@@ -1,0 +1,105 @@
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #1f2937;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #4b5563;
+    margin-top: 8px;
+}
+
+/* Cards */
+.card {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.result-card {
+    background: #e0f2fe;
+}
+
+/* Video Element */
+video {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #1e40af;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 25px;
+    background-color: #1e40af;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #2563eb;
+}
+
+/* File Input */
+.file-input {
+    margin-top: 15px;
+}
+
+/* Prediction Text */
+#emotion {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #1e40af;
+}
+
+#description {
+    font-size: 1rem;
+    color: #1f2937;
+    margin-top: 5px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    video {
+        max-width: 100%;
+    }
+}
