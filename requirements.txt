@@ -38,7 +38,7 @@ tensorboard-data-server
 tensorflow
 termcolor
 typing_extensions
-urllib
+urllib3
 Werkzeug
 wrapt
 zipp
