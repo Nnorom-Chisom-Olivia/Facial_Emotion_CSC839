@@ -4,27 +4,27 @@ import numpy as np
 from PIL import Image
 import os
 
-# Create Flask application
+# Initialize the Flask application with the current module name
 app = Flask(__name__)
 
-# Load trained deep learning model
+# Restore the trained keras model from disk
 model = load_model("emotion_model.h5")
 
-# Emotion categories (must match your model output)
-EMOTIONS = ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
+# Emotion classification model(must reflect model output)
+EMOTIONS = ["Angry", "Disgust", "Afraid", "Happy", "Sad", "Surprise", "Neutral"]
 
-# Short positive messages for each emotion
+# Follow-up messages for each emotion
 DESCRIPTIONS = {
-    "Happy": "Keep smiling! Share your joy today.",
-    "Sad": "Don't worry, better days are ahead.",
-    "Angry": "Take a deep breath and relax.",
-    "Surprise": "Wow! Something unexpected!",
-    "Neutral": "Calm and composed — keep going.",
-    "Fear": "Stay strong. Courage conquers fear.",
-    "Disgust": "Try shifting your focus to something positive."
+    "Happy": "You look joyful today! best feeling ever.",
+    "Sad": "it seems you're feeling down and that's normal, be gentle with yourself",
+    "Angry": "I can tell you're upset, try to pause and calm yourself.",
+    "Surprise": "You look amazed!",
+    "Neutral": "You are in a balanced state of mind. That is awesome!.",
+    "Afraid": "Do not be worried, things will fall in place again, when you dont expect it.",
+    "Disgust": "Sometimes, things dont just sit right with us."
 }
 
-# Folder to save uploaded images (optional)
+# To create an optional Folder to save uploaded images
 UPLOAD_FOLDER = "static/uploads/"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -36,7 +36,7 @@ def preprocess_image(image_path):
     - Normalize pixel values
     - Expand dimensions for model input
     """
-    image = Image.open(image_path).convert("L")  # Convert to grayscale
+    image = Image.open(image_path).convert("L")
     image = image.resize((48, 48))
     image = np.array(image) / 255.0
     return np.expand_dims(image, axis=0)
@@ -50,10 +50,10 @@ def index():
 def predict():
     """Handles image upload and returns the predicted emotion."""
     
-    # Get uploaded file
+
     file = request.files["image"]
 
-    # Save file to uploads folder
+
     filepath = os.path.join(UPLOAD_FOLDER, file.filename)
     file.save(filepath)
 
@@ -70,14 +70,14 @@ def predict():
     # Get description text
     description = DESCRIPTIONS.get(emotion, "")
 
-    # Return result as JSON
+    # To Return a JSON file
     return jsonify({
         "emotion": emotion,
         "description": description
     })
 
-# Run the Flask server
-# commented out because of vercel deployment
+# flask server
+# commented out incase I consider vercel deployment
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
